@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	项目内 settings.xml —— 仅作参考模板。
+	实际构建请使用用户级 ~/.m2/settings.xml（其 bjca profile 默认激活，
+	已提供 nexus mirror、nexusReleaseUrl / nexusSnapshotUrl 属性及 releases / snapshots 发布凭证），
+	Makefile 与 mvnw 命令均无需显式 -s。
+	若在无用户级配置的环境（如 CI）构建，可用本文件：./mvnw -s settings.xml ...
+	并将占位符替换为真实私服地址与凭证（或经环境变量注入）。
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<!-- 所有依赖解析统一走内网 Nexus 私服 maven-public 聚合，隔离外网 -->
+	<mirrors>
+		<mirror>
+			<id>nexus</id>
+			<name>Internal Nexus Mirror</name>
+			<url>http://192.168.131.36:8088/repository/maven-public/</url>
+			<mirrorOf>*</mirrorOf>
+		</mirror>
+	</mirrors>
+
+	<!-- 发布凭证（server id 对齐 pom.xml distributionManagement 的 releases / snapshots） -->
+	<servers>
+		<server>
+			<id>releases</id>
+			<username>${env.NEXUS_USR}</username>
+			<password>${env.NEXUS_PSW}</password>
+		</server>
+		<server>
+			<id>snapshots</id>
+			<username>${env.NEXUS_USR}</username>
+			<password>${env.NEXUS_PSW}</password>
+		</server>
+	</servers>
+
+	<!-- 私服发布 URL 属性（供 pom.xml distributionManagement 引用） -->
+	<profiles>
+		<profile>
+			<id>bjca</id>
+			<properties>
+				<nexusReleaseUrl>http://192.168.131.36:8088/repository/releases/</nexusReleaseUrl>
+				<nexusSnapshotUrl>http://192.168.131.36:8088/repository/snapshots/</nexusSnapshotUrl>
+			</properties>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>bjca</activeProfile>
+	</activeProfiles>
+
+</settings>

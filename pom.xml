@@ -3,40 +3,44 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework.data</groupId>
-	<artifactId>spring-data-keyvalue</artifactId>
-	<version>3.5.14-SNAPSHOT</version>
+	<groupId>cn.bjca.footstone.bpring.data</groupId>
+	<artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
+	<version>3.5.13-nes.patch.1-SNAPSHOT</version>
 
 	<name>Spring Data KeyValue</name>
 
 	<parent>
 		<groupId>org.springframework.data.build</groupId>
 		<artifactId>spring-data-parent</artifactId>
-		<version>3.5.14-SNAPSHOT</version>
+		<version>3.5.13</version>
 		<relativePath/>
 	</parent>
 
 	<properties>
-		<springdata.commons>3.5.14-SNAPSHOT</springdata.commons>
+		<springdata.commons>3.5.13-nes.patch.1-SNAPSHOT</springdata.commons>
+		<!-- NES fork 去特征化后的 Spring Framework 6.2 坐标版本（context/tx 及其传递依赖） -->
+		<bpring.framework>6.2.19-nes.patch.1-SNAPSHOT</bpring.framework>
 		<java-module-name>spring.data.keyvalue</java-module-name>
 	</properties>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
+			<groupId>cn.bjca.footstone.bpring.data</groupId>
+			<artifactId>bjca-footstone-bpring-data-commons</artifactId>
 			<version>${springdata.commons}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
+			<groupId>cn.bjca.footstone.bpring</groupId>
+			<artifactId>bjca-footstone-bpring-context</artifactId>
+			<version>${bpring.framework}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<groupId>cn.bjca.footstone.bpring</groupId>
+			<artifactId>bjca-footstone-bpring-tx</artifactId>
+			<version>${bpring.framework}</version>
 		</dependency>
 
 		<dependency>
@@ -106,21 +110,26 @@
 		</profile>
 	</profiles>
 
-	<repositories>
+	<!--
+		私服发布管理（NES 私服隔离）：制品发布指向内网 Nexus，URL 由 ~/.m2/settings.xml 的 bjca profile 提供，
+		不硬编码。凭证 server id 对齐 releases / snapshots。
+	-->
+	<distributionManagement>
 		<repository>
-			<id>spring-snapshot</id>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>${nexusReleaseUrl}</url>
 		</repository>
-		<repository>
-			<id>spring-milestone</id>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>${nexusSnapshotUrl}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!--
+		外网仓库隔离：移除官方 repo.spring.io 声明，依赖统一由内网私服 maven-public 聚合上游解析
+		（mirror 配置见 ~/.m2/settings.xml）。
+	-->
 
 </project>

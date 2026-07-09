@@ -13,3 +13,5 @@ node
 package-lock.json
 build/
 .mvn/.develocity
+
+.claude/
