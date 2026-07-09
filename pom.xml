@@ -3,40 +3,50 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework.data</groupId>
-	<artifactId>spring-data-keyvalue</artifactId>
-	<version>2.7.19-SNAPSHOT</version>
+	<!-- NES fork 去特征化坐标（CVE-2026-41719 已 backport 修复）：
+	     groupId/artifactId/version 均去除官方 Spring 特征，规避 SCA 按官方 GAV 误报。
+	     Java 包名与 JPMS 模块名保持不变，下游 import / requires 无需改动。 -->
+	<groupId>cn.bjca.footstone.bpring.data</groupId>
+	<artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
+	<version>2.7.18-nes.patch.1-SNAPSHOT</version>
 
 	<name>Spring Data KeyValue</name>
 
 	<parent>
 		<groupId>org.springframework.data.build</groupId>
 		<artifactId>spring-data-parent</artifactId>
-		<version>2.7.19-SNAPSHOT</version>
+		<!-- 锚定上游已发布正式版 2.7.18（不 fork spring-data-build）；parent 仅构建期解析、不进发布制品 GAV 特征 -->
+		<version>2.7.18</version>
 		<relativePath/>
 	</parent>
 
 	<properties>
-		<springdata.commons>2.7.19-SNAPSHOT</springdata.commons>
+		<!-- commons 依赖改用 NES fork 坐标版本 -->
+		<springdata.commons>2.7.18-nes.patch.1-SNAPSHOT</springdata.commons>
+		<!-- framework 线（context/tx）NES fork 版本 -->
+		<bpring.framework>5.3.39-nes.patch.1-SNAPSHOT</bpring.framework>
 		<java-module-name>spring.data.keyvalue</java-module-name>
 	</properties>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
+			<groupId>cn.bjca.footstone.bpring.data</groupId>
+			<artifactId>bjca-footstone-bpring-data-commons</artifactId>
 			<version>${springdata.commons}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
+			<!-- NES fork：坐标去特征化后 parent 的 dependencyManagement 不再托管，需显式版本 -->
+			<groupId>cn.bjca.footstone.bpring</groupId>
+			<artifactId>bjca-footstone-bpring-context</artifactId>
+			<version>${bpring.framework}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<groupId>cn.bjca.footstone.bpring</groupId>
+			<artifactId>bjca-footstone-bpring-tx</artifactId>
+			<version>${bpring.framework}</version>
 		</dependency>
 
 		<dependency>
@@ -54,6 +64,20 @@
 		</dependency>
 
 	</dependencies>
+
+	<!-- 内网 Nexus 私服发布目标；URL 由 ~/.m2/settings.xml 的 profile 属性提供，凭证 id 对齐 releases/snapshots -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>${nexusReleaseUrl}</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>${nexusSnapshotUrl}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
