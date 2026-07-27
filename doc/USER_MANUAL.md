@@ -14,7 +14,7 @@
 
 | 维度 | 官方 3.5.13 | 本 NES fork |
 |------|------------|-------------|
-| GAV | `org.springframework.data:spring-data-keyvalue:3.5.13` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-keyvalue:3.5.13-nes.patch.1-SNAPSHOT` |
+| GAV | `org.springframework.data:spring-data-keyvalue:3.5.13` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-keyvalue:3.5.13-nes.patch.1` |
 | CVE-2026-41719 | ✅ 已修复（3.5.12） | ✅ 继承官方修复 |
 | 运行时依赖坐标 | 官方 Spring 家族坐标 | 全部换 fork 坐标（commons / context / tx，官方运行时坐标清零） |
 | Java 包名 | `org.springframework.data.keyvalue.*` | 不变 |
@@ -48,8 +48,8 @@
 ```bash
 make build      # 编译打包
 make test       # 运行测试
-make install    # 安装到本地仓库
-make deploy     # 发布到 Nexus 私服
+./mvnw -DskipTests install                         # 增量安装，不执行 clean
+./mvnw -DskipTests -Dmaven.test.skip=true deploy  # 发布 RELEASE，仅由协调会话执行
 make security   # CVE-2026-41719 SpEL 安全回归
 ```
 

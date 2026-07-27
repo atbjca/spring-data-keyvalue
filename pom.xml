@@ -5,7 +5,7 @@
 
 	<groupId>cn.bjca.footstone.bpring.data</groupId>
 	<artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
-	<version>3.5.13-nes.patch.1-SNAPSHOT</version>
+	<version>3.5.13-nes.patch.1</version>
 
 	<name>Spring Data KeyValue</name>
 
@@ -17,9 +17,9 @@
 	</parent>
 
 	<properties>
-		<springdata.commons>3.5.13-nes.patch.1-SNAPSHOT</springdata.commons>
+		<springdata.commons>3.5.13-nes.patch.1</springdata.commons>
 		<!-- NES fork 去特征化后的 Spring Framework 6.2 坐标版本（context/tx 及其传递依赖） -->
-		<bpring.framework>6.2.19-nes.patch.1-SNAPSHOT</bpring.framework>
+		<bpring.framework>6.2.19-nes.patch.1</bpring.framework>
 		<java-module-name>spring.data.keyvalue</java-module-name>
 	</properties>
 

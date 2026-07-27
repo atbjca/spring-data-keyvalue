@@ -8,7 +8,7 @@
 |------|---------|--------------|
 | **groupId** | `org.springframework.data` | `cn.bjca.footstone.bpring.data` |
 | **artifactId** | `spring-data-keyvalue` | `bjca-footstone-bpring-data-keyvalue` |
-| **version** | `3.5.14-SNAPSHOT` | `3.5.13-nes.patch.1-SNAPSHOT` |
+| **version** | `3.5.14-SNAPSHOT` | `3.5.13-nes.patch.1` |
 
 ## Parent 坐标
 
@@ -26,9 +26,9 @@
 
 | 依赖 | 官方原坐标 | NES fork 坐标 | 版本属性 |
 |------|-----------|--------------|---------|
-| spring-data-commons | `org.springframework.data:spring-data-commons` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons` | `${springdata.commons}` = `3.5.13-nes.patch.1-SNAPSHOT` |
-| spring-context | `org.springframework:spring-context` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context` | `${bpring.framework}` = `6.2.19-nes.patch.1-SNAPSHOT` |
-| spring-tx | `org.springframework:spring-tx` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx` | `${bpring.framework}` = `6.2.19-nes.patch.1-SNAPSHOT` |
+| spring-data-commons | `org.springframework.data:spring-data-commons` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons` | `${springdata.commons}` = `3.5.13-nes.patch.1` |
+| spring-context | `org.springframework:spring-context` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context` | `${bpring.framework}` = `6.2.19-nes.patch.1` |
+| spring-tx | `org.springframework:spring-tx` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx` | `${bpring.framework}` = `6.2.19-nes.patch.1` |
 
 > commons fork 自身已将其传递的 Spring Framework 依赖（core/beans/expression/aop/jcl）替换为 fork 坐标，故经 `-U` 强制刷新后，`compile`/`runtime` 作用域下官方 `org.springframework` 坐标清零。
 
@@ -62,6 +62,6 @@
 <dependency>
     <groupId>cn.bjca.footstone.bpring.data</groupId>
     <artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
-    <version>3.5.13-nes.patch.1-SNAPSHOT</version>
+    <version>3.5.13-nes.patch.1</version>
 </dependency>
 ```

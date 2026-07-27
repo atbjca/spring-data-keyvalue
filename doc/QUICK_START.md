@@ -15,9 +15,9 @@
 
 | 依赖 | 版本 |
 |------|------|
-| `bjca-footstone-bpring-data-commons` | `3.5.13-nes.patch.1-SNAPSHOT` |
-| `bjca-footstone-bpring-context` | `6.2.19-nes.patch.1-SNAPSHOT` |
-| `bjca-footstone-bpring-tx` | `6.2.19-nes.patch.1-SNAPSHOT` |
+| `bjca-footstone-bpring-data-commons` | `3.5.13-nes.patch.1` |
+| `bjca-footstone-bpring-context` | `6.2.19-nes.patch.1` |
+| `bjca-footstone-bpring-tx` | `6.2.19-nes.patch.1` |
 
 ## 三步上手
 
@@ -36,7 +36,7 @@
 ### 3. 安装到本地仓库
 
 ```bash
-./mvnw -DskipTests clean install
+./mvnw -DskipTests install
 ```
 
 ## 使用 Makefile（推荐）
@@ -55,7 +55,7 @@ make security   # 运行 CVE-2026-41719 SpEL 安全回归测试
 <dependency>
     <groupId>cn.bjca.footstone.bpring.data</groupId>
     <artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
-    <version>3.5.13-nes.patch.1-SNAPSHOT</version>
+    <version>3.5.13-nes.patch.1</version>
 </dependency>
 ```
 

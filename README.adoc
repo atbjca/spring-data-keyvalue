@@ -4,6 +4,17 @@ The primary goal of the https://projects.spring.io/spring-data[Spring Data] proj
 
 This module provides infrastructure components to build repository abstractions for stores dealing with Key/Value pairs and ships with a default `java.util.Map` based implementation.
 
+== NES Release
+
+This branch publishes `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-keyvalue:3.5.13-nes.patch.1`
+to the internal Nexus RELEASE repository. It requires Data Commons
+`3.5.13-nes.patch.1` and Spring Framework `6.2.19-nes.patch.1`; all internal
+dependencies are RELEASE versions. There are no publication exclusions.
+
+Use `./mvnw -DskipTests install` for the incremental local publication gate.
+Deployment is coordinator-controlled and targets the `releases` repository
+configured in `~/.m2/settings.xml`.
+
 == Features
 
 * Infrastructure for building repositories on top of key/value implementations.

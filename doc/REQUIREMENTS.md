@@ -5,7 +5,7 @@
 | 项 | 值 |
 |----|-----|
 | 基线版本 | Spring Data KeyValue 3.5.13（官方正式版） |
-| 制品版本 | 3.5.13-nes.patch.1-SNAPSHOT |
+| 制品版本 | 3.5.13-nes.patch.1 |
 | Parent | `org.springframework.data.build:spring-data-parent:3.5.13` |
 | 构建工具 | Maven（`mvnw` 3.9.16） |
 | 编译目标 | Java 17（3.5.x 基线要求） |
@@ -39,9 +39,9 @@
 
 | 依赖 | 坐标 | 作用域 | 说明 |
 |------|-----|:---:|------|
-| spring-data-commons | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons:3.5.13-nes.patch.1-SNAPSHOT` | compile | fork 坐标 |
-| spring-context | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context:6.2.19-nes.patch.1-SNAPSHOT` | compile | fork 坐标（显式版本，脱离 parent BOM 托管） |
-| spring-tx | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx:6.2.19-nes.patch.1-SNAPSHOT` | compile | fork 坐标 |
+| spring-data-commons | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons:3.5.13-nes.patch.1` | compile | fork 坐标 |
+| spring-context | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context:6.2.19-nes.patch.1` | compile | fork 坐标（显式版本，脱离 parent BOM 托管） |
+| spring-tx | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx:6.2.19-nes.patch.1` | compile | fork 坐标 |
 | querydsl-collections | `com.querydsl:querydsl-collections:${querydsl}` | compile (optional) | 第三方，保持官方坐标 |
 
 > SpEL（`spring-expression`）经 context/tx 的 fork 传递依赖引入，CVE-2026-41719 修复所用 `SimpleEvaluationContext.forReadOnlyDataBinding()` 即由其提供。传递依赖 CVE 盘点不在本项目范围（已由 spring-framework / spring-data-commons / spring-boot NES GAV 处理覆盖）。
