@@ -104,3 +104,41 @@ SNAPSHOT dependency.
 Post-gate checks confirm production and test source diffs remain empty, the
 approved release diff is unchanged, and generated `target/` content is not
 staged.
+
+## Release commit and Nexus publication
+
+The dedicated release commit is
+`193d8eb654845495ff714138d63e67b0cc3f0025`. Immediately before deployment,
+the target POM and JAR both returned HTTP 404 from Nexus RELEASE.
+
+The coordinator executed this command once from the clean release commit:
+
+```text
+./mvnw -DskipTests -Dmaven.test.skip=true deploy
+```
+
+It omitted `clean`, test compilation, and test execution. The deploy completed
+successfully at `2026-07-27T20:04:41+08:00` in Maven `8.884s` (wall clock
+`13.17s`) and published the POM, main JAR, sources JAR, and Maven metadata.
+The rejected remote build-cache request did not affect publication.
+
+Post-deployment verification downloaded the POM and main JAR directly from
+Nexus RELEASE. The remote POM declares only RELEASE internal dependencies and
+has zero internal SNAPSHOT findings.
+
+- POM URL: `http://192.168.131.36:8088/repository/releases/cn/bjca/footstone/bpring/data/bjca-footstone-bpring-data-keyvalue/3.5.13-nes.patch.1/bjca-footstone-bpring-data-keyvalue-3.5.13-nes.patch.1.pom`
+- POM SHA-256: `252cc6a0c350c34815f9634e88d699e92819788978808b9e4cea7e9763c8d5f4`
+- JAR URL: `http://192.168.131.36:8088/repository/releases/cn/bjca/footstone/bpring/data/bjca-footstone-bpring-data-keyvalue/3.5.13-nes.patch.1/bjca-footstone-bpring-data-keyvalue-3.5.13-nes.patch.1.jar`
+- JAR SHA-256: `33b6ade0671ced0f4c0307df00491849f934b7829af16c7a5476ebaf39b1aa49`
+
+A consumer using the Wave 5 isolated local repository and repositories with
+snapshots disabled completed in Maven `3.999s`. The isolated repository had no
+KeyValue 3.5 artifact before this check, so it downloaded KeyValue and Data
+Commons `3.5.13-nes.patch.1` plus Framework `6.2.19-nes.patch.1` from Nexus,
+with no internal SNAPSHOT.
+
+Annotated tag `v3.5.13-nes.patch.1` was created locally after Nexus
+verification. Tag object `c7e21a83ff944f3b361e757db82bf5c4fabb50e1`
+peels exactly to the release commit. GitHub commit/tag push and remote
+verification remain pending because the known `github.com:443` connectivity
+blocker persists; Nexus must not be redeployed when Git is retried.
