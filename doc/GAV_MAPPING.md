@@ -8,7 +8,7 @@
 |------|-------------|------------|
 | groupId | `org.springframework.data` | `cn.bjca.footstone.bpring.data` |
 | artifactId | `spring-data-keyvalue` | `bjca-footstone-bpring-data-keyvalue` |
-| version | `2.7.19-SNAPSHOT` | `2.7.18-nes.patch.1-SNAPSHOT` |
+| version | `2.7.19-SNAPSHOT` | `2.7.18-nes.patch.1` |
 | Automatic-Module-Name | `spring.data.keyvalue` | `spring.data.keyvalue`（不变） |
 
 ## Parent
@@ -25,9 +25,9 @@
 
 | 依赖 | 原坐标 | NES fork 坐标 | 作用域 |
 |------|--------|--------------|--------|
-| spring-data-commons | `org.springframework.data:spring-data-commons` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons:2.7.18-nes.patch.1-SNAPSHOT` | compile |
-| spring-context | `org.springframework:spring-context` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context:5.3.39-nes.patch.1-SNAPSHOT` | compile |
-| spring-tx | `org.springframework:spring-tx` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx:5.3.39-nes.patch.1-SNAPSHOT` | compile |
+| spring-data-commons | `org.springframework.data:spring-data-commons` | `cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-commons:2.7.18-nes.patch.1` | compile |
+| spring-context | `org.springframework:spring-context` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-context:5.3.39-nes.patch.1` | compile |
+| spring-tx | `org.springframework:spring-tx` | `cn.bjca.footstone.bpring:bjca-footstone-bpring-tx:5.3.39-nes.patch.1` | compile |
 | querydsl-collections | `com.querydsl:querydsl-collections:5.0.0` | 保持上游不变（第三方，不去特征化） | optional |
 | joda-time | `joda-time:joda-time` | 保持上游不变（第三方，仅测试） | test |
 
@@ -35,7 +35,8 @@
 
 ## 版本命名规则
 
-`X.Y.Z-nes.patch.N-SNAPSHOT`：
+RELEASE 使用 `X.Y.Z-nes.patch.N`：
 - `X.Y.Z` 锚定上游最后正式发布号（本项目 `2.7.18`）
 - `nes.patch.N` 为 NES 补丁序号
 - data 线各 fork（keyvalue / commons）版本号保持一致
+- 下一开发版本的 `-SNAPSHOT` 提升必须通过独立变更完成。

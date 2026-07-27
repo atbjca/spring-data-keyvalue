@@ -24,10 +24,10 @@ Spring Data KeyValue 官方 `2.7.x` 版本线已 EOL，不再提供开源安全�
 
 | 组件 | 版本 |
 |------|------|
-| 本项目 | `bjca-footstone-bpring-data-keyvalue:2.7.18-nes.patch.1-SNAPSHOT` |
+| 本项目 | `bjca-footstone-bpring-data-keyvalue:2.7.18-nes.patch.1` |
 | Parent | `org.springframework.data.build:spring-data-parent:2.7.18` |
-| spring-data-commons (fork) | `2.7.18-nes.patch.1-SNAPSHOT` |
-| Spring Framework (fork) | `5.3.39-nes.patch.1-SNAPSHOT` |
+| spring-data-commons (fork) | `2.7.18-nes.patch.1` |
+| Spring Framework (fork) | `5.3.39-nes.patch.1` |
 | Java | 8（`8.0.482-kona`） |
 | Maven | 3.6.3 |
 | querydsl-collections | 5.0.0（第三方，保持上游） |

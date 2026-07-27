@@ -6,7 +6,7 @@
 
 - **基线**：Spring Data KeyValue 2.7.18 / Spring Framework 5.3.39 / Java 8
 - **分支**：`2.7.x-bjca-patch`
-- **发布坐标**：`cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-keyvalue:2.7.18-nes.patch.1-SNAPSHOT`
+- **发布坐标**：`cn.bjca.footstone.bpring.data:bjca-footstone-bpring-data-keyvalue:2.7.18-nes.patch.1`
 
 ## 二、与官方版本的差异
 
@@ -53,16 +53,16 @@ Maven 坐标从官方 `org.springframework.data:spring-data-keyvalue` 改为 `cn
 ```bash
 export JAVA_HOME=~/.sdkman/candidates/java/8.0.482-kona
 ./mvnw -s settings.xml clean test      # 测试
-./mvnw -s settings.xml install         # 本地安装
-./mvnw -s settings.xml deploy          # 发布私服 snapshot
+./mvnw -DskipTests install             # 增量本地安装，不执行 clean
+./mvnw -DskipTests -Dmaven.test.skip=true deploy  # 发布私服 RELEASE，仅由协调会话执行
 ```
 
 ## 五、依赖前置约束
 
 本项目 compile 依赖 NES fork 制品，构建前须确保私服/`~/.m2` 已部署：
 
-- `bjca-footstone-bpring-data-commons:2.7.18-nes.patch.1-SNAPSHOT`
-- `bjca-footstone-bpring-context` / `bjca-footstone-bpring-tx:5.3.39-nes.patch.1-SNAPSHOT`
+- `bjca-footstone-bpring-data-commons:2.7.18-nes.patch.1`
+- `bjca-footstone-bpring-context` / `bjca-footstone-bpring-tx:5.3.39-nes.patch.1`
 
 缺失时构建明确失败，不回退官方坐标（保证去特征化完整性）。
 

@@ -8,7 +8,7 @@
 	     Java 包名与 JPMS 模块名保持不变，下游 import / requires 无需改动。 -->
 	<groupId>cn.bjca.footstone.bpring.data</groupId>
 	<artifactId>bjca-footstone-bpring-data-keyvalue</artifactId>
-	<version>2.7.18-nes.patch.1-SNAPSHOT</version>
+	<version>2.7.18-nes.patch.1</version>
 
 	<name>Spring Data KeyValue</name>
 
@@ -22,9 +22,9 @@
 
 	<properties>
 		<!-- commons 依赖改用 NES fork 坐标版本 -->
-		<springdata.commons>2.7.18-nes.patch.1-SNAPSHOT</springdata.commons>
+		<springdata.commons>2.7.18-nes.patch.1</springdata.commons>
 		<!-- framework 线（context/tx）NES fork 版本 -->
-		<bpring.framework>5.3.39-nes.patch.1-SNAPSHOT</bpring.framework>
+		<bpring.framework>5.3.39-nes.patch.1</bpring.framework>
 		<java-module-name>spring.data.keyvalue</java-module-name>
 	</properties>
 
