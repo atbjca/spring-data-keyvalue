@@ -107,3 +107,40 @@ a publication failure. The authorized local-repository retry above succeeded.
 Post-gate checks confirm production and test source diffs remain empty, the
 approved release diff is unchanged, and generated `target/` content is not
 staged.
+
+## Release commit and Nexus publication
+
+The dedicated release commit is
+`8ad61fd79f900f41ad6e931b4298724f190ae2ed`. Immediately before deployment,
+the target POM and JAR both returned HTTP 404 from Nexus RELEASE.
+
+The coordinator executed this command once from the clean release commit:
+
+```text
+./mvnw -DskipTests -Dmaven.test.skip=true deploy
+```
+
+It omitted `clean`, test compilation, and test execution. The deploy completed
+successfully at `2026-07-27T19:57:03+08:00` in Maven `7.321s` (wall clock
+`10.55s`) and published the POM, main JAR, sources JAR, and Maven metadata.
+
+Post-deployment verification downloaded the POM and main JAR directly from
+Nexus RELEASE. The remote POM declares only RELEASE internal dependencies and
+has zero internal SNAPSHOT findings.
+
+- POM URL: `http://192.168.131.36:8088/repository/releases/cn/bjca/footstone/bpring/data/bjca-footstone-bpring-data-keyvalue/2.7.18-nes.patch.1/bjca-footstone-bpring-data-keyvalue-2.7.18-nes.patch.1.pom`
+- POM SHA-256: `15e3dbf885460ca22c49cd7e6ca94717cfa7e2459489391530ccb25983d529d2`
+- JAR URL: `http://192.168.131.36:8088/repository/releases/cn/bjca/footstone/bpring/data/bjca-footstone-bpring-data-keyvalue/2.7.18-nes.patch.1/bjca-footstone-bpring-data-keyvalue-2.7.18-nes.patch.1.jar`
+- JAR SHA-256: `a0c3c4297ea7855e9cb790c66c59b8c856613ae3c8ce160afa38316c519077a6`
+
+A consumer using an isolated local repository and repositories with snapshots
+disabled completed in Maven `11.947s`. It downloaded and resolved KeyValue and
+Data Commons `2.7.18-nes.patch.1` plus Framework `5.3.39-nes.patch.1`, with no
+internal SNAPSHOT. The first sandboxed network attempt could not retrieve Maven
+plugins; the authorized network retry succeeded and is the recorded result.
+
+Annotated tag `v2.7.18-nes.patch.1` was created locally after Nexus
+verification. Tag object `7257875d06e5dcef0992713aa3a95d22cbddb98d`
+peels exactly to the release commit. GitHub commit/tag push and remote
+verification remain pending because the known `github.com:443` connectivity
+blocker persists; Nexus must not be redeployed when Git is retried.
