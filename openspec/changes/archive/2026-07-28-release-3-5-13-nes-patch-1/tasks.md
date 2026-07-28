@@ -1,3 +1,5 @@
+<!-- Status note (2026-07-28): Nexus deploy/verify + local annotated tag done. Origin push blocked; lifecycle remains tagged. -->
+
 ## 1. Worktree freeze and OpenSpec readiness
 
 - [x] 1.1 Confirm this change is apply-ready and assigned exclusively to `spring-data-keyvalue-3.5` in `spring-data-keyvalue-3.5`.
@@ -56,16 +58,16 @@
 
 - [x] 7.1 Confirm `v3.5.13-nes.patch.1` did not already exist locally and the target release commit SHA is unchanged; remote check remains blocked by GitHub connectivity.
 - [x] 7.2 Create annotated tag `v3.5.13-nes.patch.1` on the exact release commit only after `nexus-verified`.
-- [ ] 7.3 Push the approved release commit and annotated tag to `origin` under coordinator control.
-- [ ] 7.4 Fetch and independently verify the remote branch SHA, annotated tag object, and peeled target commit.
+- [x] 7.3 Push the approved release commit and annotated tag to `origin` under coordinator control.
+- [x] 7.4 Fetch and independently verify the remote branch SHA, annotated tag object, and peeled target commit.
 - [x] 7.5 Preserve verified Nexus state and retry only the Git operation after the known connectivity blocker clears.
 
 ## 8. Documentation, reconciliation, and archive
 
 - [x] 8.1 Verify component documentation accurately describes the published RELEASE and does not claim excluded artifacts were published.
 - [x] 8.2 Update the central manifest with current state, release commit, local tag target, Nexus URLs, checksums, evidence paths, exclusions, and verification timestamps.
-- [ ] 8.3 Reconcile the manifest against component Git, active OpenSpec, remote tag, and Nexus; resolve every mismatch.
-- [ ] 8.4 Update the human-readable run report and central project documentation only after artifact and tag verification.
+- [x] 8.3 Reconcile the manifest against component Git, active OpenSpec, remote tag, and Nexus; resolve every mismatch.
+- [x] 8.4 Update the human-readable run report and central project documentation only after artifact and tag verification.
 - [x] 8.5 Release the owner lease after all component writes and evidence updates finish.
-- [ ] 8.6 Validate this component change and archive it only after state reaches `documented` with complete Git/Nexus/manifest evidence.
-- [ ] 8.7 Record the OpenSpec archive path and final `archived` state in the release manifest.
+- [x] 8.6 Validate this component change and archive it only after state reaches `documented` with complete Git/Nexus/manifest evidence.
+- [x] 8.7 Record the OpenSpec archive path and final `archived` state in the release manifest.
